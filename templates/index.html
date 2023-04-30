@@ -3,7 +3,7 @@
 {% with messages = get_flashed_messages() %}
 {% if messages %}
   {% for message in messages %}
-    <div class="alert alert-danger">{{ message }}</div>
+    <div class="bg-red-500 text-white p-4 mb-8">{{ message }}</div>
   {% endfor %}
 {% endif %}
 {% endwith %}
@@ -15,23 +15,24 @@
     <title>Please rate your service</title>
   </head>
   <body>
-    <div class="container">
-      <img src="../static/logo.png" alt="Lexus" class="logo" />
+    <div class="container mx-auto">
+      <img src="../static/logo.png" alt="Lexus" class="mx-auto w-48" />
       {% if message %}
-      <p class="message">{{ message | safe }}</p>
+      <p class="text-center text-2xl font-bold mb-8">{{ message | safe }}</p>
       {% endif %}
-      <form action="/submit" method="POST">
-        <div class="form-group">
-          <h3>Customer Name</h3>
+      <form action="/submit" method="POST" class="max-w-lg mx-auto">
+        <div class="mb-8">
+          <h3 class="text-lg font-bold mb-2">Customer Name</h3>
           <input
             type="text"
             name="customer"
             placeholder="Name of vehicle owner"
+            class="block w-full bg-gray-100 border border-gray-300 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
           />
         </div>
-        <div class="form-group">
-          <h3>Dealer</h3>
-          <select name="dealer">
+        <div class="mb-8">
+          <h3 class="text-lg font-bold mb-2">Dealer</h3>
+          <select name="dealer" class="block w-full bg-gray-100 border border-gray-300 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
             <option value="">Select Dealer</option>
             <option value="Tom Smith">Tom Smith</option>
             <option value="Karen Swanson">Karen Swanson</option>
@@ -39,30 +40,54 @@
             <option value="Shauna Gifford">Shauna Gifford</option>
           </select>
         </div>
-        <div class="form-group">
-          <h3>Please rate your dealer</h3>
-          <input type="radio" name="rating" value="1" /> 1
-          <input type="radio" name="rating" value="2" /> 2
-          <input type="radio" name="rating" value="3" /> 3
-          <input type="radio" name="rating" value="4" /> 4
-          <input type="radio" name="rating" value="5" /> 5
-          <input type="radio" name="rating" value="6" /> 6
-          <input type="radio" name="rating" value="7" /> 7
-          <input type="radio" name="rating" value="8" /> 8
-          <input type="radio" name="rating" value="9" /> 9
-          <input type="radio" name="rating" value="10" checked /> 10
+        <div class="mb-8">
+          <h3 class="text-lg font-bold mb-2">Please rate your dealer</h3>
+          <div class="flex items-center mb-4">
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" name="rating" value="1" class="form-radio" /><span class="ml-2">1</span>
+            </label>
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" name="rating" value="2" class="form-radio" /><span class="ml-2">2</span>
+            </label>
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" name="rating" value="3" class="form-radio" /><span class="ml-2">3</span>
+            </label>
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" name="rating" value="4" class="form-radio" /><span class="ml-2">4</span>
+            </label>
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" name="rating" value="5" class="form-radio" />
+              <span class="ml-2">5</span>
+            </label>
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" name="rating" value="6" class="form-radio" /><span class="ml-2">6</span>
+            </label>
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" name="rating" value="7" class="form-radio" /><span class="ml-2">7</span>
+            </label>
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" name="rating" value="8" class="form-radio" /><span class="ml-2">8</span>
+            </label>
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" name="rating" value="9" class="form-radio" /><span class="ml-2">9</span>
+            </label>
+            <label class="inline-flex items-center mr-4">
+              <input type="radio" name="rating" value="10" class="form-radio" checked /><span class="ml-2">10</span>
+            </label>
+          </div>
         </div>
-        <div class="form-group">
-          <h3>Comments about your experience</h3>
+        <div class="mb-8">
+          <h3 class="text-lg font-bold mb-2">Comments about your experience</h3>
           <textarea
             name="comments"
             id=""
             cols="30"
             rows="10"
             placeholder="Tell us what you liked and/or did not like"
+            class="block w-full bg-gray-100 border border-gray-300 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
           ></textarea>
         </div>
-        <input type="submit" value="Submit" class="btn" />
+        <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" />
       </form>
     </div>
 {% endblock %}

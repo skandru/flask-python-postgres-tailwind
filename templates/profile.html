@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Profile</h1>
-    <p>Username: {{ current_user.username }}</p>
-    <p>Email: {{ current_user.email }}</p>
+    <h1 class="text-4xl font-bold mb-8">Profile</h1>
+    <div class="bg-gray-100 rounded-lg p-8">
+        <p class="text-xl font-bold mb-2">Username:</p>
+        <p class="text-gray-700">{{ current_user.username }}</p>
+        <p class="text-xl font-bold mt-4 mb-2">Email:</p>
+        <p class="text-gray-700">{{ current_user.email }}</p>
+    </div>
 {% endblock %}
