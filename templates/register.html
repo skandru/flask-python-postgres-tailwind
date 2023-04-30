@@ -1,33 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1 class="text-4xl font-bold mb-8">Register</h1>
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-      <div class="bg-red-500 text-white p-4 mb-8">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
-  {% endwith %}
+  <div class="flex justify-center items-center h-full">
+    <div class="w-full max-w-md">
+      <h1 class="text-4xl font-bold mb-8">Register</h1>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="bg-red-500 text-white p-4 mb-8">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
 
-  <form method="POST" action="{{ url_for('register') }}" class="max-w-md">
-    {{ form.csrf_token }}
-    <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2">Username</label>
-      {{ form.username(class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500", required=True) }}
+      <form method="POST" action="{{ url_for('register') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        {{ form.csrf_token }}
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2">Username</label>
+          {{ form.username(class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500", required=True) }}
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2">Email</label>
+          {{ form.email(class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500", required=True) }}
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2">Password</label>
+          {{ form.password(class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500", required=True) }}
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2">Confirm Password</label>
+          {{ form.confirm_password(class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500", required=True) }}
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
+      </form>
     </div>
-    <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2">Email</label>
-      {{ form.email(class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500", required=True) }}
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2">Password</label>
-      {{ form.password(class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500", required=True) }}
-    </div>
-    <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2">Confirm Password</label>
-      {{ form.confirm_password(class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500", required=True) }}
-    </div>
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
-  </form>
+  </div>
 {% endblock %}
