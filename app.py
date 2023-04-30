@@ -62,6 +62,20 @@ class Feedback(db.Model):
         self.rating = rating
         self.comments = comments
 
+class Usermessage(db.Model):
+    __tablename__ = 'usermessage'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    message = db.Column(db.String(500), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    def __init__(self, name, email, message):
+        self.name = name
+        self.email = email
+        self.message = message
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -166,13 +180,6 @@ def logout():
 @app.route('/landing')
 def landing():
     return render_template('landing.html')
-
-@app.route('/submit_form', methods=['POST'])
-def submit_form():
-    name = request.form['name']
-    email = request.form['email']
-    # Do something with the name and email
-    return 'Thanks for submitting the form!'
     
 @app.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
@@ -264,6 +271,19 @@ def submit():
                 return render_template('success.html')
             else:
                 return render_template('index.html', message='You have already submitted feedback')
+
+@app.route('/submit_form', methods=['GET', 'POST'])
+def submit_form():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+        new_message = Usermessage(name=name, email=email, message=message)
+        db.session.add(new_message)
+        db.session.commit()
+        flash('Thanks for your feedback!', 'success')
+        return redirect(url_for('landing'))
+    return render_template('landing.html')
 
 if __name__ == '__main__':
     app.run()
