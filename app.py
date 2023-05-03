@@ -17,19 +17,19 @@ ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:CXSbElP{N@localhost/acura'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost/acura'
 else:
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = ''
 
-app.config['SECRET_KEY'] = 'Roja'
+app.config['SECRET_KEY'] = 'secret'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAIL_SERVER'] = 'sandbox.smtp.mailtrap.io'
 app.config['MAIL_PORT'] = 2525
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = 'dd8472badc7d78'
-app.config['MAIL_PASSWORD'] = 'd648e65cf25c0a'
+app.config['MAIL_USERNAME'] = 'dd3247dsshfsd'
+app.config['MAIL_PASSWORD'] = 'kdfssldf3434f'
 
 mail = Mail(app)
 db = SQLAlchemy(app)
